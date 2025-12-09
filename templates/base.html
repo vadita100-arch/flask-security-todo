@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask App</title>
+</head>
+<body>
+<nav>
+    {% if current_user.is_authenticated %}
+        <a href="{{ url_for('todo') }}">To-Do</a> |
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+        <a href="{{ url_for('login') }}">Login</a> |
+        <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+</nav>
+<hr>
+
+{% with messages = get_flashed_messages() %}
+    {% for m in messages %}
+        <p style="color:red;">{{ m }}</p>
+    {% endfor %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+</body>
+</html>
